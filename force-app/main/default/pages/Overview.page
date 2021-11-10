@@ -1,0 +1,72 @@
+<apex:page controller="OverviewController" showHeader="false" applyBodyTag="false" docType="html-5.0" standardStylesheets="false">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"/>
+        <link rel="preconnect" href="https://fonts.googleapis.com"/>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="true"/>
+        <link href="https://fonts.googleapis.com/css2?family=Andada+Pro:wght@400;500;600&family=Lexend:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+        <link href="{!URLFOR($Resource.Menu, 'css/common.css')}" rel="stylesheet"/>
+        <link href="{!URLFOR($Resource.Menu, 'css/overview.css')}" rel="stylesheet"/>
+
+    </head>
+
+    <body>
+        <div class="header">
+            <div id="clock">
+                Loading clock
+            </div>
+        </div>
+
+        <apex:form >
+            <apex:actionFunction action="{!createSections}" name="refreshData" reRender="mainsection"/>
+        </apex:form>
+
+        <apex:outputPanel id="mainsection">
+            <div class="wideContainer">
+            
+            
+                <apex:repeat value="{!sections}" var="section">
+                    <div class="section">
+                        <div class="sectionTitle">
+                            {!section.sectionRecord.Name}
+                        </div>
+
+                        <div class="stats">
+                            <div class="stat">Orders Completed: {!section.completeOrders}/{!section.totalOrders}</div>
+                            <div class="stat">Orders Waiting: {!section.totalOrders - section.completeOrders}</div>
+                            <div class="stat">Average Wait Time: {!section.averageTime}</div>
+                            <div class="stat">Average Rating: {!IF(section.sectionRecord.Average_Rating__c != null, section.sectionRecord.Average_Rating__c, 'N/A')}</div>
+                            <div class="stat">Best Item: {!section.sectionRecord.Items__r[0].Name}</div>
+                        </div>
+
+                        <div class="orders">
+                            <apex:repeat value="{!section.newOrders}" var="order">
+                                <div class="order">
+                                    <div class="orderNumber">
+                                        {!order.orderRecord.Order_Number__c}
+                                    </div>
+
+                                    <div class="orderInfo">
+                                        <div class="orderHeader">
+                                            {!order.itemRecord.Name} {!IF(order.contactRecord.Name != '', 'for ' + order.contactRecord.Name, '')}
+                                        </div>
+
+                                        <div class="orderDetails">
+                                            Time In Flight: {!order.timeInFlight}
+                                        </div>
+                                    </div>
+                                </div>
+                            </apex:repeat>
+                        </div>
+                    </div>
+                </apex:repeat>
+            
+            </div>
+        </apex:outputPanel>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/0f8b411d7c.js" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="{!URLFOR($Resource.Menu, 'js/overview.js')}"></script>
+    </body>
+</apex:page>

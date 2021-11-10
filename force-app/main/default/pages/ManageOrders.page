@@ -1,0 +1,90 @@
+<apex:page controller="ManageOrdersController" showHeader="false" applyBodyTag="false" docType="html-5.0" standardStylesheets="false">
+
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"/>
+        <link rel="preconnect" href="https://fonts.googleapis.com"/>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="true"/>
+        <link href="https://fonts.googleapis.com/css2?family=Andada+Pro:wght@400;500;600&family=Lexend:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+        <link href="{!URLFOR($Resource.Menu, 'css/common.css')}" rel="stylesheet"/>
+        <link href="{!URLFOR($Resource.Menu, 'css/manageorders.css')}" rel="stylesheet"/>
+        <!-- <link href="{!URLFOR($Resource.Menu, 'css/menu.css')}" rel="stylesheet"/> -->
+    </head>
+    
+    
+    <body>
+
+        <div class="container">
+
+            
+            <div class="filter">
+                <apex:form >
+                    <apex:selectList value="{!sectionFilter}" size="1">
+                        <apex:selectOptions value="{!sectionOptions}"/>
+                        <apex:actionSupport action="{!refreshList}" event="onchange" reRender="orderList" status="loadingBox" oncomplete="setToggle();"/>
+                    </apex:selectList>
+                    <apex:actionFunction action="{!refreshList}" name="refreshList" reRender="orderList" oncomplete="setToggle();"/>
+                </apex:form>
+
+                <button type="button" onclick="refreshList();">
+                    Refresh
+                </button>
+            </div>
+            
+            <apex:actionStatus id="loadingBox">
+                <apex:facet name="start">
+                    Loading...
+                </apex:facet>
+            </apex:actionStatus>
+            
+            <apex:outputPanel id="orderList">
+                <div class="orders">
+                    <apex:repeat value="{!openOrders}" var="order">
+
+                        <div class="order">
+                            <div class="orderHeader">
+                                <div class="orderChevron">
+                                    <div class="openIcon expandIcon"><i class="fas fa-chevron-down"></i></div>
+                                    <div class="closedIcon expandIcon"><i class="fas fa-chevron-up"></i></div>
+                                </div>
+                                <div class="orderHeaderText">
+                                    {!order.Order_Number__c}: {!order.Item__r.Name} {!IF(order.Contact__r.Name == '', '', 'for ' + order.Contact__r.Name)}
+                                </div>
+                            </div>
+
+                            <div class="orderBody">
+                                <apex:outputPanel rendered="{!order.Status__c == 'New'}">
+                                    <button onclick="finishOrder('{!order.Id}');" type="button">Finish Order</button>
+                                </apex:outputPanel>
+                                <button onclick="outOfStock('{!order.Id}');" type="button">Out Of Stock</button>
+
+
+                                <div class="recipe">
+                                    <apex:outputText escape="false" value="{!order.Item__r.Recipe__c}"/>
+                                </div>
+                                
+                            </div>
+                        </div>                    
+                    </apex:repeat>
+                </div>
+            </apex:outputPanel>
+
+            
+    </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/0f8b411d7c.js" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+        <script>
+            //setInterval(function() {refreshList();}, 10000);
+            var closeRemote = '{!$RemoteAction.ManageOrdersController.closeOrder}';
+            var outRemote = '{!$RemoteAction.ManageOrdersController.markOutOfStock}';
+        </script>
+        <script src="{!URLFOR($Resource.Menu, 'js/manageorders.js')}"></script>
+
+    </body>
+
+
+    
+</apex:page>

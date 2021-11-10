@@ -1,0 +1,156 @@
+@media (min-width: 1200px) {
+    .container, .container-lg, .container-md, .container-sm, .container-xl {
+        max-width: 940px;
+    }
+}
+
+.item {
+    padding:10px;
+    border:1px solid #b6f2eb;
+    border-radius:10px;
+    margin-top:10px;
+}
+
+.header {
+    padding-bottom:30px;
+    text-align:center;
+}
+
+.headerText{
+    text-align:center;
+    padding-bottom:20px;
+}
+
+.sectionHeader {
+    color:#b6f2eb;
+    text-align: center;
+}
+
+.sectionHeader h3 {
+    font-family:'Lexend', sans-serif;
+    font-weight:100;
+    text-transform: uppercase;
+}
+
+.section {
+    margin-bottom:20px;
+}
+
+.logo {
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.logo img {
+    width:250px;
+}
+
+.submitButton button {
+    background: #b6f2eb;
+    padding: 10px;
+    color: #21243d;
+    border: 1px solid #21243d;
+    font-family: 'Lexend';
+    font-weight: 400;
+}
+
+.submitButton {
+    margin-top:20px;
+}
+
+
+
+.itemDescription {
+    color: #cccccc;
+    font-weight: 300;
+}
+
+.itemDescription p {
+    margin-bottom:0;
+}
+
+.container {
+    background-color:#303559;
+    min-height:100vh;
+    padding:30px 40px;
+}
+
+@media (min-width:576px) {
+    .contBorder {
+        border-left: 10px solid #b6f2eb;
+        border-right: 10px solid #b6f2eb;
+        
+    }
+}
+
+.form-control {
+    background-color:#ffffff00;
+    margin-bottom:10px;
+    color:white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 18px;
+}
+
+.form-control:focus {
+    background-color:#ffffff0a;
+    color:white;
+}
+
+.form-control::placeholder {
+    color:#cccccc;
+}
+
+.orderTitle {
+    font-size: 40px;
+    font-weight: 200;
+    color:#b6f2eb;
+}
+
+.orderHeader {
+    padding-bottom:20px;
+}
+
+.orderDescription {
+    font-weight: 200;
+    color: #cccccc;
+}
+
+/* #order {
+    
+    transition: transform .5s;
+} */
+
+#confirm, #spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    text-align:center;
+}
+
+.overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: #303559;
+    top: 0;
+    right: 0;
+    transition: transform .5s;
+    padding:20px;
+}
+
+.hide {
+    transform: translateX(100%);
+}
+
+.closeLink {
+    margin:30px;
+}
+
+@media (max-width:575px) {
+    .container {
+        padding-left:15px;
+        padding-right:15px;
+    }
+}

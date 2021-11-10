@@ -1,0 +1,55 @@
+.wideContainer {
+    display:flex;
+    margin:5px 30px;
+    
+}
+
+.section {
+    flex-grow:1;
+    margin-right:30px;
+}
+
+.section:last-child {
+    margin-right:0;
+}
+
+.sectionTitle {
+    text-align:center;
+    font-size:40px;
+    font-family:'Lexend', sans-serif;
+    font-weight:100;
+    color:#b6f2eb;
+}
+
+.order {
+    border: 1px solid white;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    display:flex;
+    align-items:center;
+}
+
+.orderNumber {
+    font-size: 30px;
+    padding: 0 15px;
+    font-weight:100;
+}
+
+.header {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 50px;
+    font-weight: 100;
+}
+
+body p, body h1, body h2, body h3, body h4, body h5, body {
+    font-family:'Lexend', sans-serif;
+}
+
+.stats {
+    text-align: center;
+    font-size: 26px;
+    font-weight: 100;
+    margin-bottom:20px;
+}

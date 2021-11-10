@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Public_Links__c</fullName>
+    <externalId>false</externalId>
+    <formula>HYPERLINK( $Setup.Site_Settings__c.Site_URL_Base__c + &apos;/Menu?id=&apos; + Id, &apos;Menu&apos;, &apos;_blank&apos;) 
++ &quot; | &quot; +
+HYPERLINK($Setup.Site_Settings__c.Site_URL_Base__c + &apos;/ManageOrders?id=&apos; + Id, &apos;Manage Orders&apos;, &apos;_blank&apos;)
++ &quot; | &quot; +
+HYPERLINK($Setup.Site_Settings__c.Site_URL_Base__c + &apos;/Overview?id=&apos; + Id, &apos;Overview&apos;, &apos;_blank&apos;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Public Links</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

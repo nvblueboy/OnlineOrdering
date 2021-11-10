@@ -1,0 +1,73 @@
+.filter {
+    display:flex;
+}
+
+.filter form {
+    flex-grow:1;
+    flex-basis:0;
+    padding-right:10px;
+}
+
+.filter select {
+    width:100%;
+    padding: 10px;
+    background-color: #ffffff00;
+    color: white;
+    border: 1px solid white;
+    border-radius:5px;
+}
+
+.container {
+    padding-top: 30px;
+}
+
+.order {
+    padding: 20px;
+    border: 1px solid white;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.orderChevron {
+    display: inline-block;
+}
+
+.openIcon, .closedIcon {
+    font-size:20px;
+}
+
+.order:not(.open) .orderChevron .openIcon {
+    display:none;
+}
+
+.order.open .orderChevron .closedIcon {
+    display:none;
+}
+
+.orderHeaderText {
+    font-size:20px;
+    padding-left:20px;
+    display:inline;
+}
+
+.order:not(.open) .orderBody {
+    display:none;
+}
+
+.orderBody {
+    padding-top:10px;
+}
+
+button {
+    background: #b6f2eb;
+    padding: 10px;
+    color: #21243d;
+    border: 1px solid #21243d;
+    font-family: 'Lexend';
+    font-weight: 400;
+    border-radius:5px;
+}
+
+.recipe {
+    padding-top:10px;
+}

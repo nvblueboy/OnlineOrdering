@@ -1,0 +1,13 @@
+body {
+    background-color:#21243d;
+    color:white;
+    
+}
+
+body p, body h1, body h2, body h3, body h4, body h5 {
+    font-family:'Lexend', sans-serif;
+}
+
+.itemHeader {
+    font-family: 'Andada Pro', serif;
+}
